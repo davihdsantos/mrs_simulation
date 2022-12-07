@@ -111,6 +111,8 @@ param set MAV_SYS_ID $((px4_instance+1))
 port_base=$((14000 + (4 * px4_instance)))
 udp_offboard_port_local=$((port_base + 1))
 udp_offboard_port_remote=$((port_base + 2))
+udp_gcs_port_local=$((14570))
+udp_gcs_port_remote=$((14550))
 
 simulator_tcp_port=$((4560+px4_instance))
 
@@ -178,6 +180,9 @@ param set COM_CPU_MAX -1 # disable check, no CPU load reported on posix yet
 
 # Simulator IMU data provided at 250 Hz
 param set IMU_INTEG_RATE 250
+
+param set NAV_RCL_ACT 0
+param set NAV_DLL_ACT 0
 
 # Adapt timeout parameters if simulation runs faster or slower than realtime.
 if [ -n "$PX4_SIM_SPEED_FACTOR" ]; then
@@ -249,7 +254,7 @@ fi
 . ${R}etc/init.d/rc.vehicle_setup
 
 # GCS link
-# mavlink start -x -u $udp_gcs_port_local -r 4000000
+mavlink start -x -u $udp_gcs_port_local -r 4000000 -o $udp_gcs_port_remote
 
 # API/Offboard link
 mavlink start -x -u $udp_offboard_port_local -r 4000000 -m onboard -o $udp_offboard_port_remote
