@@ -184,6 +184,9 @@ param set IMU_INTEG_RATE 250
 param set NAV_RCL_ACT 0
 param set NAV_DLL_ACT 0
 
+# Set takeoff altitude
+# param set MIS_TAKEOFF_ALT 10
+
 # Adapt timeout parameters if simulation runs faster or slower than realtime.
 if [ -n "$PX4_SIM_SPEED_FACTOR" ]; then
 	COM_DL_LOSS_T_LONGER=$(echo "$PX4_SIM_SPEED_FACTOR * 10" | bc)
