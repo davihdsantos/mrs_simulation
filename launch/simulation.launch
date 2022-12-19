@@ -8,7 +8,7 @@
   <arg name="headless" default="false" />
   <arg name="debug" default="false" />
   <arg name="physics" default="ode" />
-  <arg name="verbose" default="true" />
+  <arg name="verbose" default="false" />
   <arg name="reset" default="true" />
 
     <!-- supply this argument to specify the world name within the mrs_gazebo_common_resources package -->
